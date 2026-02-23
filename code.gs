@@ -2,7 +2,7 @@
 // KONFIGURASI UTAMA
 // ==========================================
 // GANTI DENGAN ID GOOGLE SLIDES ANDA (Ambil kode acak dari URL file Slides)
-var SLIDE_ID = "MASUKKAN_ID_SLIDES_ANDA_DISINI"; 
+var SLIDE_ID = "1VwoGYvEh_dCPAjzip5yrb6elXTpKFed6tyw0l_HyWdQ"; 
 
 // Menggunakan angka 2 karena template format berada di Slide ke-3 
 // (Slide 1 = 0, Slide 2 = 1, Slide 3 = 2)
@@ -146,4 +146,5 @@ function slideMilikiTeks(slide, textToFind) {
 // Jika URL Web App dibuka langsung di browser, ini yang akan muncul
 function doGet(e) {
   return ContentService.createTextOutput("Sistem Backend API Data Entry Promo Lotte Mart Aktif dan Siap Digunakan!");
+
 }
