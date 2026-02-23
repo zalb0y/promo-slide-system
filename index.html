@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Entry Promo Lotte Mart</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 500px; margin: auto; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; }
+        select, input[type="text"], input[type="number"] { width: 100%; padding: 8px; box-sizing: border-box; }
+        button { padding: 10px 15px; background-color: #d32f2f; color: white; border: none; cursor: pointer; width: 100%; font-size: 16px;}
+        button:hover { background-color: #b71c1c; }
+        #status { margin-top: 15px; font-weight: bold; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <h2>Data Entry Product Promo</h2>
+    
+    <form id="entryForm">
+        <div class="form-group">
+            <label>Nama Toko:</label>
+            <select id="toko" required>
+                <option value="">-- Pilih Toko --</option>
+                <option value="Festival City Link">Festival City Link</option>
+                <option value="Gandaria">Gandaria</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Division:</label>
+            <select id="divisi" onchange="updateKategori()" required>
+                <option value="">-- Pilih Divisi --</option>
+                <option value="Dry Food">Dry Food</option>
+                <option value="Fresh Food">Fresh Food</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Category:</label>
+            <select id="kategori" required>
+                <option value="">-- Pilih Kategori --</option>
+                </select>
+        </div>
+
+        <div class="form-group">
+            <label>Product Name (prod_nm):</label>
+            <input type="text" id="prod_nm" required>
+        </div>
+
+        <div class="form-group">
+            <label>Stock (stk):</label>
+            <input type="number" id="stk" required>
+        </div>
+
+        <div class="form-group">
+            <label>Upload Gambar:</label>
+            <input type="file" id="foto" accept="image/*" required>
+        </div>
+
+        <button type="submit" id="submitBtn">Kirim Data</button>
+    </form>
+
+    <div id="status"></div>
+
+    <script src="config.js"></script>
+    <script>
+        // Logika Dropdown Dinamis
+        const kategoriData = {
+            "Dry Food": ["Biscuit/Snacks", "Drinks"],
+            "Fresh Food": ["Fruits", "Fish"]
+        };
+
+        function updateKategori() {
+            const divisiSelect = document.getElementById("divisi").value;
+            const kategoriSelect = document.getElementById("kategori");
+            
+            kategoriSelect.innerHTML = '<option value="">-- Pilih Kategori --</option>'; // Reset
+            
+            if (divisiSelect && kategoriData[divisiSelect]) {
+                kategoriData[divisiSelect].forEach(kat => {
+                    let option = document.createElement("option");
+                    option.value = kat;
+                    option.text = kat;
+                    kategoriSelect.appendChild(option);
+                });
+            }
+        }
+
+        // Logika Submit Form
+        document.getElementById("entryForm").addEventListener("submit", async function(e) {
+            e.preventDefault();
+            
+            const btn = document.getElementById("submitBtn");
+            const statusBox = document.getElementById("status");
+            const fileInput = document.getElementById("foto");
+            
+            btn.disabled = true;
+            statusBox.innerHTML = "Membaca gambar & mengirim data... Mohon tunggu.";
+            statusBox.style.color = "blue";
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            // Ubah gambar jadi Base64 agar mudah dikirim via API
+            reader.onload = async function() {
+                const base64Data = reader.result.split(',')[1];
+
+                const payload = {
+                    toko: document.getElementById("toko").value,
+                    divisi: document.getElementById("divisi").value,
+                    kategori: document.getElementById("kategori").value,
+                    prod_nm: document.getElementById("prod_nm").value,
+                    stk: document.getElementById("stk").value,
+                    fotoBase64: base64Data,
+                    mimeType: file.type,
+                    filename: file.name
+                };
+
+                try {
+                    const response = await fetch(CONFIG.APP_SCRIPT_URL, {
+                        method: "POST",
+                        body: JSON.stringify(payload)
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if(result.status === "success") {
+                        statusBox.innerHTML = "✅ Berhasil! " + result.message;
+                        statusBox.style.color = "green";
+                        document.getElementById("entryForm").reset();
+                        updateKategori(); // Reset dropdown
+                    } else {
+                        statusBox.innerHTML = "❌ Gagal: " + result.message;
+                        statusBox.style.color = "red";
+                    }
+                } catch (error) {
+                    statusBox.innerHTML = "❌ Terjadi kesalahan jaringan.";
+                    statusBox.style.color = "red";
+                }
+                btn.disabled = false;
+            };
+            
+            reader.readAsDataURL(file);
+        });
+    </script>
+</body>
+</html>
