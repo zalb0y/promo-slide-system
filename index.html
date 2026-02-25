@@ -1,799 +1,699 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOTTE MART - Data Entry Promo Display</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #E31937;
-            --primary-dark: #B8152C;
-            --secondary: #1A1A2E;
-            --accent: #FFD700;
-            --bg-light: #F8F9FA;
-            --bg-card: #FFFFFF;
-            --text-primary: #1A1A2E;
-            --text-secondary: #6C757D;
-            --border: #E9ECEF;
-            --success: #28A745;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lotte Grosir — Area Display Promo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="config.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    :root {
+      --red: #E7000B;
+      --red-dark: #B80009;
+      --red-light: #FFF1F1;
+      --dark: #1E2939;
+      --gray-50: #F9FAFB;
+      --gray-100: #F3F4F6;
+      --gray-200: #E5E7EB;
+      --gray-300: #D1D5DB;
+      --gray-400: #9CA3AF;
+      --gray-500: #6B7280;
+      --gray-700: #374151;
+      --white: #FFFFFF;
+      --radius: 12px;
+      --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+    }
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-light);
-            color: var(--text-primary);
-            min-height: 100vh;
-        }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--gray-50);
+      color: var(--dark);
+      min-height: 100vh;
+    }
 
-        /* Header */
-        .header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            padding: 1.5rem 2rem;
-            box-shadow: var(--shadow-lg);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+    /* Header */
+    .header {
+      background: var(--red);
+      color: var(--white);
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(231,0,11,0.3);
+    }
+    .header-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .header-logo {
+      width: 42px;
+      height: 42px;
+      background: var(--white);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--red);
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .header h1 { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; }
+    .header p  { font-size: 12px; opacity: 0.85; margin-top: 2px; }
 
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+    /* Main */
+    .main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 24px 20px 80px;
+    }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
+    /* Card */
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+    .card-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
 
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: white;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 1.5rem;
-        }
+    /* Form row */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .form-row.full { grid-template-columns: 1fr; }
 
-        .logo-text h1 {
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
+    .form-group { display: flex; flex-direction: column; gap: 4px; }
+    .form-group label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--gray-500);
+    }
 
-        .logo-text p {
-            font-size: 0.85rem;
-            opacity: 0.9;
-        }
+    select, input[type="text"], input[type="number"] {
+      height: 42px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 8px;
+      padding: 0 12px;
+      font-size: 14px;
+      font-family: inherit;
+      color: var(--dark);
+      background: var(--white);
+      transition: border-color 0.15s;
+      width: 100%;
+    }
+    select:focus, input:focus {
+      outline: none;
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(231,0,11,0.1);
+    }
+    select { cursor: pointer; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m1 1.5 5 5 5-5' stroke='%239CA3AF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 32px;
+    }
 
-        .header-badge {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+    /* Image Upload */
+    .upload-area {
+      border: 2px dashed var(--gray-300);
+      border-radius: 8px;
+      padding: 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.15s;
+      position: relative;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--gray-50);
+    }
+    .upload-area:hover { border-color: var(--red); background: var(--red-light); }
+    .upload-area.has-image { border-style: solid; border-color: var(--gray-200); padding: 8px; }
+    .upload-area input { display: none; }
+    .upload-icon {
+      width: 40px; height: 40px;
+      background: var(--gray-100);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .upload-icon svg { width: 20px; height: 20px; color: var(--gray-400); }
+    .upload-text { font-size: 13px; color: var(--gray-400); }
+    .upload-preview {
+      max-width: 100%;
+      max-height: 200px;
+      border-radius: 6px;
+      object-fit: contain;
+    }
+    .upload-remove {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 24px;
+      height: 24px;
+      background: var(--red);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
 
-        /* Main Container */
-        .container {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
+    /* Submit Button */
+    .btn-submit {
+      width: 100%;
+      height: 48px;
+      background: var(--red);
+      color: var(--white);
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-submit:hover { background: var(--red-dark); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+    .btn-submit:active { transform: translateY(0); }
+    .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
-        /* Card */
-        .card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-            overflow: hidden;
-            margin-bottom: 1.5rem;
-        }
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--dark);
+      color: var(--white);
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      z-index: 999;
+      transition: transform 0.3s ease;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      max-width: 90vw;
+      text-align: center;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .toast.success { background: #059669; }
+    .toast.error { background: #DC2626; }
 
-        .card-header {
-            background: var(--secondary);
-            color: white;
-            padding: 1rem 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
+    /* Spinner */
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border: 2.5px solid rgba(255,255,255,0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
-        .card-header i {
-            font-size: 1.25rem;
-            color: var(--accent);
-        }
+    /* Status bar */
+    .status-bar {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 14px 20px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--gray-500);
+    }
+    .status-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #10B981;
+      flex-shrink: 0;
+    }
+    .status-dot.pending { background: var(--gray-300); }
 
-        .card-header h2 {
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
+    /* Recent entries */
+    .recent-entries {
+      margin-top: 24px;
+    }
+    .recent-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    .entry-item {
+      background: var(--white);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 8px;
+      box-shadow: var(--shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+    .entry-item .entry-info { display: flex; flex-direction: column; gap: 2px; }
+    .entry-item .entry-store { font-weight: 600; color: var(--dark); }
+    .entry-item .entry-detail { color: var(--gray-400); font-size: 12px; }
+    .entry-item .entry-status { font-size: 11px; font-weight: 600; color: #059669; }
 
-        .card-body {
-            padding: 1.5rem;
-        }
-
-        /* Form Grid */
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.25rem;
-        }
-
-        .form-grid.single {
-            grid-template-columns: 1fr;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .form-group.full-width {
-            grid-column: 1 / -1;
-        }
-
-        .form-label {
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .form-label i {
-            color: var(--primary);
-            font-size: 0.9rem;
-        }
-
-        .form-control {
-            padding: 0.75rem 1rem;
-            border: 2px solid var(--border);
-            border-radius: 10px;
-            font-size: 0.95rem;
-            font-family: inherit;
-            transition: all 0.2s ease;
-            background: var(--bg-light);
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: white;
-            box-shadow: 0 0 0 4px rgba(227, 25, 55, 0.1);
-        }
-
-        select.form-control {
-            cursor: pointer;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236C757D'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 0.75rem center;
-            background-size: 1.25rem;
-            padding-right: 2.5rem;
-        }
-
-        /* Image Upload */
-        .image-upload-container {
-            border: 2px dashed var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            background: var(--bg-light);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .image-upload-container:hover {
-            border-color: var(--primary);
-            background: rgba(227, 25, 55, 0.05);
-        }
-
-        .image-upload-container.has-image {
-            padding: 1rem;
-        }
-
-        .upload-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-        }
-
-        .upload-icon i {
-            font-size: 1.5rem;
-            color: white;
-        }
-
-        .upload-text {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .upload-hint {
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-            opacity: 0.7;
-        }
-
-        #imagePreview {
-            max-width: 100%;
-            max-height: 200px;
-            border-radius: 8px;
-            display: none;
-        }
-
-        #imagePreview.show {
-            display: block;
-            margin: 0 auto;
-        }
-
-        .preview-container {
-            display: none;
-        }
-
-        .preview-container.show {
-            display: block;
-        }
-
-        .remove-image {
-            margin-top: 0.75rem;
-            padding: 0.5rem 1rem;
-            background: var(--text-secondary);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: background 0.2s;
-        }
-
-        .remove-image:hover {
-            background: var(--primary);
-        }
-
-        /* Submit Button */
-        .btn-submit {
-            width: 100%;
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 14px rgba(227, 25, 55, 0.4);
-        }
-
-        .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(227, 25, 55, 0.5);
-        }
-
-        .btn-submit:active {
-            transform: translateY(0);
-        }
-
-        .btn-submit:disabled {
-            background: var(--text-secondary);
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        /* Status Messages */
-        .status-message {
-            padding: 1rem 1.5rem;
-            border-radius: 10px;
-            margin-top: 1rem;
-            display: none;
-            align-items: center;
-            gap: 0.75rem;
-            font-weight: 500;
-        }
-
-        .status-message.show {
-            display: flex;
-        }
-
-        .status-message.success {
-            background: rgba(40, 167, 69, 0.1);
-            color: var(--success);
-            border: 1px solid rgba(40, 167, 69, 0.3);
-        }
-
-        .status-message.error {
-            background: rgba(227, 25, 55, 0.1);
-            color: var(--primary);
-            border: 1px solid rgba(227, 25, 55, 0.3);
-        }
-
-        .status-message.loading {
-            background: rgba(26, 26, 46, 0.1);
-            color: var(--secondary);
-            border: 1px solid rgba(26, 26, 46, 0.3);
-        }
-
-        /* Spinner */
-        .spinner {
-            width: 20px;
-            height: 20px;
-            border: 2px solid transparent;
-            border-top-color: currentColor;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 2rem;
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .container {
-                margin: 1rem auto;
-            }
-        }
-
-        /* Store Type Selector */
-        .store-type-selector {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 0;
-        }
-
-        .store-type-btn {
-            flex: 1;
-            padding: 1rem;
-            border: 2px solid var(--border);
-            border-radius: 12px;
-            background: var(--bg-light);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-        }
-
-        .store-type-btn:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-
-        .store-type-btn.active {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            border-color: var(--primary);
-            color: white;
-        }
-
-        .store-type-btn i {
-            font-size: 1.25rem;
-        }
-
-        /* Hidden file input */
-        #imageFile {
-            display: none;
-        }
-    </style>
+    @media (max-width: 480px) {
+      .form-row { grid-template-columns: 1fr; }
+      .card { padding: 18px; }
+    }
+  </style>
 </head>
 <body>
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">
-                <div class="logo-icon">L</div>
-                <div class="logo-text">
-                    <h1>LOTTE MART</h1>
-                    <p>Data Entry Promo Display</p>
-                </div>
-            </div>
-            <div class="header-badge">
-                <i class="fas fa-calendar-alt"></i>
-                <span id="currentDate"></span>
-            </div>
+  <!-- Header -->
+  <div class="header">
+    <div class="header-inner">
+      <div class="header-logo">L</div>
+      <div>
+        <h1>Area Display Promo</h1>
+        <p>Data Entry — Lotte Grosir</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <!-- Status -->
+    <div class="status-bar">
+      <div class="status-dot pending" id="statusDot"></div>
+      <span id="statusText">Siap untuk input data</span>
+    </div>
+
+    <!-- Store Selection Card -->
+    <div class="card">
+      <div class="card-title">Informasi Toko</div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Store Type</label>
+          <select id="storeType" onchange="onStoreTypeChange()">
+            <option value="">— Pilih Tipe —</option>
+            <option value="LSI">LSI</option>
+            <option value="LMI">LMI</option>
+          </select>
         </div>
-    </header>
-
-    <main class="container">
-        <!-- Store Type Selection -->
-        <div class="card">
-            <div class="card-header">
-                <i class="fas fa-store"></i>
-                <h2>Pilih Tipe Toko</h2>
-            </div>
-            <div class="card-body">
-                <div class="store-type-selector">
-                    <button type="button" class="store-type-btn active" data-type="LSI" onclick="selectStoreType('LSI')">
-                        <i class="fas fa-warehouse"></i>
-                        <span>LSI</span>
-                    </button>
-                    <button type="button" class="store-type-btn" data-type="LMI" onclick="selectStoreType('LMI')">
-                        <i class="fas fa-building"></i>
-                        <span>LMI</span>
-                    </button>
-                </div>
-            </div>
+        <div class="form-group">
+          <label>Region</label>
+          <select id="region" onchange="onRegionChange()" disabled>
+            <option value="">— Pilih Region —</option>
+          </select>
         </div>
+      </div>
 
-        <!-- Data Entry Form -->
-        <form id="dataEntryForm">
-            <div class="card">
-                <div class="card-header">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <h2>Informasi Lokasi</h2>
-                </div>
-                <div class="card-body">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label class="form-label">
-                                <i class="fas fa-globe-asia"></i>
-                                Region
-                            </label>
-                            <select class="form-control" id="region" required onchange="updateStoreList()">
-                                <option value="">-- Pilih Region --</option>
-                                <option value="Region 1">Region 1</option>
-                                <option value="Region 2">Region 2</option>
-                                <option value="Region 3">Region 3</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">
-                                <i class="fas fa-store-alt"></i>
-                                Nama Toko
-                            </label>
-                            <select class="form-control" id="storeName" required>
-                                <option value="">-- Pilih Region Terlebih Dahulu --</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="form-row full">
+        <div class="form-group">
+          <label>Store Name</label>
+          <select id="storeName" disabled>
+            <option value="">— Pilih Toko —</option>
+          </select>
+        </div>
+      </div>
+    </div>
 
-            <div class="card">
-                <div class="card-header">
-                    <i class="fas fa-tags"></i>
-                    <h2>Informasi Produk</h2>
-                </div>
-                <div class="card-body">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label class="form-label">
-                                <i class="fas fa-layer-group"></i>
-                                Divisi
-                            </label>
-                            <select class="form-control" id="division" required onchange="updateCategoryList()">
-                                <option value="">-- Pilih Divisi --</option>
-                                <option value="Dry Food">Dry Food</option>
-                                <option value="Meal Solution">Meal Solution</option>
-                                <option value="Fresh Food">Fresh Food</option>
-                                <option value="H&B HOME CARE">H&B HOME CARE</option>
-                                <option value="Non Food">Non Food</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">
-                                <i class="fas fa-boxes"></i>
-                                Kategori
-                            </label>
-                            <select class="form-control" id="category" required>
-                                <option value="">-- Pilih Divisi Terlebih Dahulu --</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">
-                                <i class="fas fa-box"></i>
-                                Nama Produk (prod_nm)
-                            </label>
-                            <input type="text" class="form-control" id="prodNm" placeholder="Masukkan nama produk" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">
-                                <i class="fas fa-cubes"></i>
-                                Stock (stk)
-                            </label>
-                            <input type="text" class="form-control" id="stk" placeholder="Masukkan jumlah stock" required>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Product Card -->
+    <div class="card">
+      <div class="card-title">Informasi Produk</div>
 
-            <div class="card">
-                <div class="card-header">
-                    <i class="fas fa-image"></i>
-                    <h2>Upload Gambar Produk</h2>
-                </div>
-                <div class="card-body">
-                    <div class="image-upload-container" id="uploadContainer" onclick="document.getElementById('imageFile').click()">
-                        <div id="uploadPlaceholder">
-                            <div class="upload-icon">
-                                <i class="fas fa-cloud-upload-alt"></i>
-                            </div>
-                            <p class="upload-text">Klik untuk upload gambar atau drag & drop</p>
-                            <p class="upload-hint">PNG, JPG, JPEG (Max 5MB)</p>
-                        </div>
-                        <div class="preview-container" id="previewContainer">
-                            <img id="imagePreview" alt="Preview">
-                            <button type="button" class="remove-image" onclick="removeImage(event)">
-                                <i class="fas fa-trash"></i> Hapus Gambar
-                            </button>
-                        </div>
-                    </div>
-                    <input type="file" id="imageFile" accept="image/*" onchange="previewImage(event)">
-                </div>
-            </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Division</label>
+          <select id="division" onchange="onDivisionChange()">
+            <option value="">— Pilih Divisi —</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Category</label>
+          <select id="category" disabled>
+            <option value="">— Pilih Kategori —</option>
+          </select>
+        </div>
+      </div>
 
-            <button type="submit" class="btn-submit" id="submitBtn">
-                <i class="fas fa-paper-plane"></i>
-                <span>Submit Data</span>
-            </button>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Product Name</label>
+          <input type="text" id="prodName" placeholder="Nama produk..." />
+        </div>
+        <div class="form-group">
+          <label>Stock (Stk)</label>
+          <input type="text" id="stk" placeholder="Jumlah stok..." />
+        </div>
+      </div>
+    </div>
 
-            <div class="status-message" id="statusMessage">
-                <i class="fas fa-check-circle"></i>
-                <span id="statusText"></span>
-            </div>
-        </form>
-    </main>
+    <!-- Image Upload Card -->
+    <div class="card">
+      <div class="card-title">Upload Gambar Produk</div>
+      <div class="upload-area" id="uploadArea" onclick="document.getElementById('imageInput').click()">
+        <input type="file" id="imageInput" accept="image/*" onchange="onImageSelect(event)" />
+        <div class="upload-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <div class="upload-text">Klik untuk upload gambar</div>
+      </div>
+    </div>
 
-    <footer class="footer">
-        <p>&copy; 2026 LOTTE MART - Promo Display System</p>
-    </footer>
+    <!-- Submit -->
+    <button class="btn-submit" id="btnSubmit" onclick="submitEntry()" disabled>
+      Upload ke Google Slides
+    </button>
 
-    <script src="config.js"></script>
-    <script>
-        // Display current date
-        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('id-ID', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
+    <!-- Recent Entries -->
+    <div class="recent-entries" id="recentSection" style="display:none;">
+      <div class="recent-title">Riwayat Input</div>
+      <div id="recentList"></div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ============================================================
+    // State
+    // ============================================================
+    let selectedImageBase64 = null;
+    let recentEntries = [];
+
+    // ============================================================
+    // Dropdown Initializations
+    // ============================================================
+    function initDivisions() {
+      const sel = document.getElementById("division");
+      sel.innerHTML = '<option value="">— Pilih Divisi —</option>';
+      Object.keys(DIVISIONS).forEach((div) => {
+        sel.innerHTML += `<option value="${div}">${div}</option>`;
+      });
+    }
+
+    function onStoreTypeChange() {
+      const type = document.getElementById("storeType").value;
+      const regionSel = document.getElementById("region");
+      const storeSel = document.getElementById("storeName");
+
+      regionSel.innerHTML = '<option value="">— Pilih Region —</option>';
+      storeSel.innerHTML = '<option value="">— Pilih Toko —</option>';
+      storeSel.disabled = true;
+
+      if (!type) {
+        regionSel.disabled = true;
+        return;
+      }
+
+      regionSel.disabled = false;
+      const regions = Object.keys(STORES[type]);
+      regions.forEach((r) => {
+        regionSel.innerHTML += `<option value="${r}">${r}</option>`;
+      });
+      validateForm();
+    }
+
+    function onRegionChange() {
+      const type = document.getElementById("storeType").value;
+      const region = document.getElementById("region").value;
+      const storeSel = document.getElementById("storeName");
+
+      storeSel.innerHTML = '<option value="">— Pilih Toko —</option>';
+
+      if (!region || !type) {
+        storeSel.disabled = true;
+        return;
+      }
+
+      storeSel.disabled = false;
+      const stores = STORES[type][region] || [];
+      stores.forEach((s) => {
+        storeSel.innerHTML += `<option value="${s.code}">${s.code} - ${s.name}</option>`;
+      });
+      validateForm();
+    }
+
+    function onDivisionChange() {
+      const div = document.getElementById("division").value;
+      const catSel = document.getElementById("category");
+
+      catSel.innerHTML = '<option value="">— Pilih Kategori —</option>';
+
+      if (!div) {
+        catSel.disabled = true;
+        return;
+      }
+
+      catSel.disabled = false;
+      const cats = DIVISIONS[div] || [];
+      cats.forEach((c) => {
+        catSel.innerHTML += `<option value="${c.code} - ${c.name}">${c.code} - ${c.name}</option>`;
+      });
+      validateForm();
+    }
+
+    // ============================================================
+    // Image Handling
+    // ============================================================
+    function onImageSelect(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      // Validate size (max 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        showToast("Ukuran gambar maksimal 5MB", "error");
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        selectedImageBase64 = e.target.result;
+        const area = document.getElementById("uploadArea");
+        area.classList.add("has-image");
+        area.innerHTML = `
+          <img src="${selectedImageBase64}" class="upload-preview" />
+          <button class="upload-remove" onclick="removeImage(event)">✕</button>
+          <input type="file" id="imageInput" accept="image/*" onchange="onImageSelect(event)" />
+        `;
+        validateForm();
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function removeImage(event) {
+      event.stopPropagation();
+      selectedImageBase64 = null;
+      const area = document.getElementById("uploadArea");
+      area.classList.remove("has-image");
+      area.innerHTML = `
+        <input type="file" id="imageInput" accept="image/*" onchange="onImageSelect(event)" />
+        <div class="upload-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <div class="upload-text">Klik untuk upload gambar</div>
+      `;
+      validateForm();
+    }
+
+    // ============================================================
+    // Validation
+    // ============================================================
+    function validateForm() {
+      const fields = [
+        document.getElementById("storeType").value,
+        document.getElementById("region").value,
+        document.getElementById("storeName").value,
+        document.getElementById("division").value,
+        document.getElementById("category").value,
+        document.getElementById("prodName").value.trim(),
+        document.getElementById("stk").value.trim(),
+        selectedImageBase64,
+      ];
+      const valid = fields.every((f) => f);
+      document.getElementById("btnSubmit").disabled = !valid;
+    }
+
+    // Add input listeners for manual fields
+    document.addEventListener("DOMContentLoaded", () => {
+      initDivisions();
+      ["prodName", "stk", "storeName", "category"].forEach((id) => {
+        document.getElementById(id).addEventListener("input", validateForm);
+        document.getElementById(id).addEventListener("change", validateForm);
+      });
+    });
+
+    // ============================================================
+    // Submit
+    // ============================================================
+    async function submitEntry() {
+      const btn = document.getElementById("btnSubmit");
+      btn.disabled = true;
+      btn.innerHTML = '<div class="spinner"></div> Mengirim...';
+
+      const storeType = document.getElementById("storeType").value;
+      const region = document.getElementById("region").value;
+      const storeCode = document.getElementById("storeName").value;
+      const storeSel = document.getElementById("storeName");
+      const storeLabel = storeSel.options[storeSel.selectedIndex].text;
+      const division = document.getElementById("division").value;
+      const category = document.getElementById("category").value;
+      const prodName = document.getElementById("prodName").value.trim();
+      const stk = document.getElementById("stk").value.trim();
+
+      // Determine which slides ID to use
+      const slidesId = storeType === "LSI" ? CONFIG.SLIDES_ID_LSI : CONFIG.SLIDES_ID_LMI;
+
+      const payload = {
+        slidesId: slidesId,
+        storeType: storeType,
+        region: region,
+        storeCode: storeCode,
+        storeName: storeLabel,
+        division: division,
+        category: category,
+        prodName: prodName,
+        stk: stk,
+        imageBase64: selectedImageBase64,
+      };
+
+      setStatus("pending", "Mengirim data...");
+
+      try {
+        const response = await fetch(CONFIG.APPS_SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain" },
+          body: JSON.stringify(payload),
         });
 
-        // Current store type
-        let currentStoreType = 'LSI';
+        // no-cors won't give us the response body, so we use a different approach
+        // We'll switch to using redirect-based fetch
+        await submitViaForm(payload);
 
-        // Select store type
-        function selectStoreType(type) {
-            currentStoreType = type;
-            document.querySelectorAll('.store-type-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.type === type);
-            });
-            // Reset form selections
-            document.getElementById('region').value = '';
-            document.getElementById('storeName').innerHTML = '<option value="">-- Pilih Region Terlebih Dahulu --</option>';
-            updateStoreList();
-        }
+      } catch (error) {
+        showToast("Error: " + error.message, "error");
+        setStatus("pending", "Error saat mengirim");
+        btn.disabled = false;
+        btn.innerHTML = "Upload ke Google Slides";
+      }
+    }
 
-        // Update store list based on region and store type
-        function updateStoreList() {
-            const region = document.getElementById('region').value;
-            const storeSelect = document.getElementById('storeName');
-            storeSelect.innerHTML = '<option value="">-- Pilih Toko --</option>';
+    async function submitViaForm(payload) {
+      const btn = document.getElementById("btnSubmit");
 
-            if (!region) return;
-
-            const stores = CONFIG.stores[currentStoreType][region];
-            if (stores) {
-                stores.forEach(store => {
-                    const option = document.createElement('option');
-                    option.value = store;
-                    option.textContent = store;
-                    storeSelect.appendChild(option);
-                });
-            }
-        }
-
-        // Update category list based on division
-        function updateCategoryList() {
-            const division = document.getElementById('division').value;
-            const categorySelect = document.getElementById('category');
-            categorySelect.innerHTML = '<option value="">-- Pilih Kategori --</option>';
-
-            if (!division) return;
-
-            const categories = CONFIG.categories[division];
-            if (categories) {
-                categories.forEach(cat => {
-                    const option = document.createElement('option');
-                    option.value = cat;
-                    option.textContent = cat;
-                    categorySelect.appendChild(option);
-                });
-            }
-        }
-
-        // Image preview
-        function previewImage(event) {
-            const file = event.target.files[0];
-            if (file) {
-                if (file.size > 5 * 1024 * 1024) {
-                    showStatus('Ukuran file terlalu besar. Maksimal 5MB.', 'error');
-                    return;
-                }
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('imagePreview').src = e.target.result;
-                    document.getElementById('imagePreview').classList.add('show');
-                    document.getElementById('uploadPlaceholder').style.display = 'none';
-                    document.getElementById('previewContainer').classList.add('show');
-                    document.getElementById('uploadContainer').classList.add('has-image');
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        // Remove image
-        function removeImage(event) {
-            event.stopPropagation();
-            document.getElementById('imageFile').value = '';
-            document.getElementById('imagePreview').src = '';
-            document.getElementById('imagePreview').classList.remove('show');
-            document.getElementById('uploadPlaceholder').style.display = 'block';
-            document.getElementById('previewContainer').classList.remove('show');
-            document.getElementById('uploadContainer').classList.remove('has-image');
-        }
-
-        // Show status message
-        function showStatus(message, type) {
-            const statusDiv = document.getElementById('statusMessage');
-            const statusText = document.getElementById('statusText');
-            const icon = statusDiv.querySelector('i');
-
-            statusDiv.className = 'status-message show ' + type;
-            statusText.textContent = message;
-
-            if (type === 'success') {
-                icon.className = 'fas fa-check-circle';
-            } else if (type === 'error') {
-                icon.className = 'fas fa-exclamation-circle';
-            } else if (type === 'loading') {
-                icon.className = 'spinner';
-            }
-        }
-
-        // Form submission
-        document.getElementById('dataEntryForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-
-            const submitBtn = document.getElementById('submitBtn');
-            submitBtn.disabled = true;
-            showStatus('Mengirim data...', 'loading');
-
-            // Get form data
-            const formData = {
-                storeType: currentStoreType,
-                region: document.getElementById('region').value,
-                storeName: document.getElementById('storeName').value,
-                division: document.getElementById('division').value,
-                category: document.getElementById('category').value,
-                prodNm: document.getElementById('prodNm').value,
-                stk: document.getElementById('stk').value
-            };
-
-            // Get image as base64
-            const imageFile = document.getElementById('imageFile').files[0];
-            if (imageFile) {
-                const base64 = await fileToBase64(imageFile);
-                formData.imageBase64 = base64;
-                formData.imageName = imageFile.name;
-            }
-
-            // Send to Google Apps Script
-            const scriptUrl = CONFIG.scriptUrl;
-
-            try {
-                const response = await fetch(scriptUrl, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(formData)
-                });
-
-                // Since we're using no-cors, we can't read the response
-                // We'll assume success and show a message
-                showStatus('Data berhasil dikirim! Slide akan diperbarui.', 'success');
-                
-                // Reset form (keep store type and region)
-                document.getElementById('prodNm').value = '';
-                document.getElementById('stk').value = '';
-                removeImage(new Event('click'));
-
-            } catch (error) {
-                console.error('Error:', error);
-                showStatus('Terjadi kesalahan. Silakan coba lagi.', 'error');
-            }
-
-            submitBtn.disabled = false;
+      try {
+        const response = await fetch(CONFIG.APPS_SCRIPT_URL, {
+          method: "POST",
+          body: JSON.stringify(payload),
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8",
+          },
+          redirect: "follow",
         });
 
-        // Convert file to base64
-        function fileToBase64(file) {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = error => reject(error);
-            });
+        const result = await response.json();
+
+        if (result.success) {
+          showToast("Berhasil di-upload!", "success");
+          setStatus("ok", `Terakhir: ${payload.prodName} → ${payload.storeName}`);
+          addRecentEntry(payload);
+          resetProductFields();
+        } else {
+          showToast("Gagal: " + (result.error || "Unknown error"), "error");
+          setStatus("pending", "Gagal mengirim");
         }
+      } catch (err) {
+        showToast("Network error — cek koneksi atau URL Apps Script", "error");
+        setStatus("pending", "Error koneksi");
+      }
 
-        // Drag and drop support
-        const uploadContainer = document.getElementById('uploadContainer');
+      btn.disabled = false;
+      btn.innerHTML = "Upload ke Google Slides";
+      validateForm();
+    }
 
-        uploadContainer.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadContainer.style.borderColor = 'var(--primary)';
-            uploadContainer.style.background = 'rgba(227, 25, 55, 0.05)';
-        });
+    // ============================================================
+    // Helpers
+    // ============================================================
+    function resetProductFields() {
+      document.getElementById("prodName").value = "";
+      document.getElementById("stk").value = "";
+      selectedImageBase64 = null;
+      removeImage(new Event("click"));
+      // Keep store & division selection for rapid entry
+    }
 
-        uploadContainer.addEventListener('dragleave', () => {
-            uploadContainer.style.borderColor = 'var(--border)';
-            uploadContainer.style.background = 'var(--bg-light)';
-        });
+    function setStatus(type, text) {
+      document.getElementById("statusDot").className = "status-dot" + (type === "ok" ? "" : " pending");
+      document.getElementById("statusText").textContent = text;
+    }
 
-        uploadContainer.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadContainer.style.borderColor = 'var(--border)';
-            uploadContainer.style.background = 'var(--bg-light)';
-            
-            const files = e.dataTransfer.files;
-            if (files.length > 0) {
-                document.getElementById('imageFile').files = files;
-                previewImage({ target: { files: files } });
-            }
-        });
-    </script>
+    function showToast(msg, type = "") {
+      const t = document.getElementById("toast");
+      t.textContent = msg;
+      t.className = "toast " + type + " show";
+      setTimeout(() => { t.className = "toast"; }, 3000);
+    }
+
+    function addRecentEntry(p) {
+      recentEntries.unshift(p);
+      if (recentEntries.length > 10) recentEntries.pop();
+      renderRecent();
+    }
+
+    function renderRecent() {
+      const section = document.getElementById("recentSection");
+      const list = document.getElementById("recentList");
+      section.style.display = "block";
+      list.innerHTML = recentEntries
+        .map(
+          (e) => `
+        <div class="entry-item">
+          <div class="entry-info">
+            <span class="entry-store">${e.prodName}</span>
+            <span class="entry-detail">${e.storeName} · ${e.category} · Stk: ${e.stk}</span>
+          </div>
+          <span class="entry-status">✓ Uploaded</span>
+        </div>`
+        )
+        .join("");
+    }
+  </script>
 </body>
 </html>
