@@ -3,10 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Entry - Lotte Grosir Promo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>LOTTE MART - Data Entry Promo Display</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary: #E31937;
+            --primary-dark: #B8152C;
+            --secondary: #1A1A2E;
+            --accent: #FFD700;
+            --bg-light: #F8F9FA;
+            --bg-card: #FFFFFF;
+            --text-primary: #1A1A2E;
+            --text-secondary: #6C757D;
+            --border: #E9ECEF;
+            --success: #28A745;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -14,117 +29,277 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-light);
+            color: var(--text-primary);
             min-height: 100vh;
-            padding: 20px;
         }
 
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
+        /* Header */
         .header {
-            text-align: center;
-            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: var(--shadow-lg);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        .header h1 {
-            font-size: 2rem;
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: 700;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            color: var(--primary);
+            font-size: 1.5rem;
         }
 
-        .header p {
-            font-size: 1rem;
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo-text p {
+            font-size: 0.85rem;
             opacity: 0.9;
         }
 
+        .header-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Card */
         .card {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            background: var(--bg-card);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-header {
+            background: var(--secondary);
+            color: white;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .card-header i {
+            font-size: 1.25rem;
+            color: var(--accent);
+        }
+
+        .card-header h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        /* Form Grid */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+        }
+
+        .form-grid.single {
+            grid-template-columns: 1fr;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #333;
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-label i {
+            color: var(--primary);
             font-size: 0.9rem;
         }
 
-        .form-group label i {
-            margin-right: 8px;
-            color: #667eea;
-        }
-
         .form-control {
-            width: 100%;
-            padding: 14px 16px;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-family: 'Poppins', sans-serif;
-            transition: all 0.3s ease;
-            background: #fafafa;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: all 0.2s ease;
+            background: var(--bg-light);
         }
 
         .form-control:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: var(--primary);
             background: white;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+            box-shadow: 0 0 0 4px rgba(227, 25, 55, 0.1);
         }
 
         select.form-control {
             cursor: pointer;
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23667eea' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236C757D'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
             background-repeat: no-repeat;
-            background-position: right 12px center;
-            background-size: 20px;
-            padding-right: 45px;
+            background-position: right 0.75rem center;
+            background-size: 1.25rem;
+            padding-right: 2.5rem;
         }
 
-        select.form-control:disabled {
-            background-color: #e9ecef;
-            cursor: not-allowed;
-            opacity: 0.6;
+        /* Image Upload */
+        .image-upload-container {
+            border: 2px dashed var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            background: var(--bg-light);
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
 
-        .row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
+        .image-upload-container:hover {
+            border-color: var(--primary);
+            background: rgba(227, 25, 55, 0.05);
         }
 
+        .image-upload-container.has-image {
+            padding: 1rem;
+        }
+
+        .upload-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+
+        .upload-icon i {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .upload-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .upload-hint {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        #imagePreview {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        #imagePreview.show {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .preview-container {
+            display: none;
+        }
+
+        .preview-container.show {
+            display: block;
+        }
+
+        .remove-image {
+            margin-top: 0.75rem;
+            padding: 0.5rem 1rem;
+            background: var(--text-secondary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: background 0.2s;
+        }
+
+        .remove-image:hover {
+            background: var(--primary);
+        }
+
+        /* Submit Button */
         .btn-submit {
             width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
             border: none;
             border-radius: 12px;
             font-size: 1.1rem;
             font-weight: 600;
-            font-family: 'Poppins', sans-serif;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
             transition: all 0.3s ease;
-            margin-top: 10px;
+            box-shadow: 0 4px 14px rgba(227, 25, 55, 0.4);
         }
 
         .btn-submit:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 6px 20px rgba(227, 25, 55, 0.5);
         }
 
         .btn-submit:active {
@@ -132,381 +307,491 @@
         }
 
         .btn-submit:disabled {
-            opacity: 0.6;
+            background: var(--text-secondary);
             cursor: not-allowed;
             transform: none;
+            box-shadow: none;
         }
 
-        .loading {
+        /* Status Messages */
+        .status-message {
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            margin-top: 1rem;
             display: none;
-            text-align: center;
-            padding: 20px;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 500;
         }
 
-        .loading.active {
-            display: block;
+        .status-message.show {
+            display: flex;
         }
 
+        .status-message.success {
+            background: rgba(40, 167, 69, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(40, 167, 69, 0.3);
+        }
+
+        .status-message.error {
+            background: rgba(227, 25, 55, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(227, 25, 55, 0.3);
+        }
+
+        .status-message.loading {
+            background: rgba(26, 26, 46, 0.1);
+            color: var(--secondary);
+            border: 1px solid rgba(26, 26, 46, 0.3);
+        }
+
+        /* Spinner */
         .spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid #e0e0e0;
-            border-top-color: #667eea;
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top-color: currentColor;
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
         }
 
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
 
-        .alert {
-            padding: 16px 20px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            display: none;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .alert.show {
-            display: flex;
-        }
-
-        .alert-success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        .alert-error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-
-        .alert i {
-            font-size: 1.2rem;
-        }
-
-        .info-box {
-            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
-            border: 1px solid #667eea30;
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 20px;
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
             font-size: 0.85rem;
-            color: #555;
         }
 
-        .info-box i {
-            color: #667eea;
-            margin-right: 8px;
-        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
 
-        .store-badge {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-left: 10px;
-        }
-
-        .badge-lsi {
-            background: #e3f2fd;
-            color: #1976d2;
-        }
-
-        .badge-lmi {
-            background: #f3e5f5;
-            color: #7b1fa2;
-        }
-
-        @media (max-width: 480px) {
-            .row {
+            .form-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .header h1 {
-                font-size: 1.5rem;
-            }
-            
-            .card {
-                padding: 20px;
+
+            .container {
+                margin: 1rem auto;
             }
         }
+
+        /* Store Type Selector */
+        .store-type-selector {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 0;
+        }
+
+        .store-type-btn {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            background: var(--bg-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .store-type-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .store-type-btn.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .store-type-btn i {
+            font-size: 1.25rem;
+        }
+
+        /* Hidden file input */
+        #imageFile {
+            display: none;
+        }
     </style>
-<base target="_blank">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1><i class="fas fa-images"></i> Data Entry Promo</h1>
-            <p>Input data gambar produk ke Google Slides</p>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">L</div>
+                <div class="logo-text">
+                    <h1>LOTTE MART</h1>
+                    <p>Data Entry Promo Display</p>
+                </div>
+            </div>
+            <div class="header-badge">
+                <i class="fas fa-calendar-alt"></i>
+                <span id="currentDate"></span>
+            </div>
         </div>
+    </header>
 
+    <main class="container">
+        <!-- Store Type Selection -->
         <div class="card">
-            <div class="info-box">
-                <i class="fas fa-info-circle"></i>
-                <strong>Tips:</strong> Pastikan gambar produk sudah diupload ke Google Drive dan accessibility di-set ke "Anyone with the link"
+            <div class="card-header">
+                <i class="fas fa-store"></i>
+                <h2>Pilih Tipe Toko</h2>
             </div>
-
-            <div id="alertBox" class="alert">
-                <i class="fas fa-check-circle"></i>
-                <span id="alertMessage"></span>
-            </div>
-
-            <form id="dataEntryForm">
-                <!-- Store Type -->
-                <div class="form-group">
-                    <label><i class="fas fa-store"></i> Tipe Toko</label>
-                    <select id="storeType" class="form-control" required>
-                        <option value="">-- Pilih Tipe Toko --</option>
-                        <option value="LSI">LSI <span class="store-badge badge-lsi">Lotte Supermarket</span></option>
-                        <option value="LMI">LMI <span class="store-badge badge-lmi">Lotte Mart</span></option>
-                    </select>
+            <div class="card-body">
+                <div class="store-type-selector">
+                    <button type="button" class="store-type-btn active" data-type="LSI" onclick="selectStoreType('LSI')">
+                        <i class="fas fa-warehouse"></i>
+                        <span>LSI</span>
+                    </button>
+                    <button type="button" class="store-type-btn" data-type="LMI" onclick="selectStoreType('LMI')">
+                        <i class="fas fa-building"></i>
+                        <span>LMI</span>
+                    </button>
                 </div>
-
-                <!-- Region -->
-                <div class="form-group">
-                    <label><i class="fas fa-map-marker-alt"></i> Region</label>
-                    <select id="region" class="form-control" required disabled>
-                        <option value="">-- Pilih Region --</option>
-                        <option value="1">Region 1</option>
-                        <option value="2">Region 2</option>
-                        <option value="3">Region 3</option>
-                    </select>
-                </div>
-
-                <!-- Store Name -->
-                <div class="form-group">
-                    <label><i class="fas fa-building"></i> Nama Toko</label>
-                    <select id="storeName" class="form-control" required disabled>
-                        <option value="">-- Pilih Toko --</option>
-                    </select>
-                </div>
-
-                <!-- Division -->
-                <div class="form-group">
-                    <label><i class="fas fa-th-large"></i> Divisi</label>
-                    <select id="division" class="form-control" required>
-                        <option value="">-- Pilih Divisi --</option>
-                        <option value="Dry Food">Dry Food</option>
-                        <option value="Meal Solution">Meal Solution</option>
-                        <option value="Fresh Food">Fresh Food</option>
-                        <option value="H&B HOME CARE">H&B HOME CARE</option>
-                        <option value="Non Food">Non Food</option>
-                    </select>
-                </div>
-
-                <!-- Category -->
-                <div class="form-group">
-                    <label><i class="fas fa-tags"></i> Kategori</label>
-                    <select id="category" class="form-control" required disabled>
-                        <option value="">-- Pilih Kategori --</option>
-                    </select>
-                </div>
-
-                <div class="row">
-                    <!-- Product Name -->
-                    <div class="form-group">
-                        <label><i class="fas fa-box"></i> Nama Produk</label>
-                        <input type="text" id="prodName" class="form-control" placeholder="Masukkan nama produk" required>
-                    </div>
-
-                    <!-- Stock -->
-                    <div class="form-group">
-                        <label><i class="fas fa-cubes"></i> Stok</label>
-                        <input type="text" id="stock" class="form-control" placeholder="Jumlah stok" required>
-                    </div>
-                </div>
-
-                <!-- Image URL -->
-                <div class="form-group">
-                    <label><i class="fas fa-image"></i> URL Gambar (Google Drive)</label>
-                    <input type="url" id="imageUrl" class="form-control" placeholder="https://drive.google.com/uc?export=view&id=..." required>
-                    <small style="color: #888; font-size: 0.8rem; margin-top: 5px; display: block;">
-                        <i class="fas fa-lightbulb"></i> Convert link Google Drive: https://drive.google.com/uc?export=view&id=YOUR_FILE_ID
-                    </small>
-                </div>
-
-                <button type="submit" class="btn-submit" id="submitBtn">
-                    <i class="fas fa-paper-plane"></i> Submit ke Google Slides
-                </button>
-            </form>
-
-            <div class="loading" id="loading">
-                <div class="spinner"></div>
-                <p>Sedang memproses data...</p>
             </div>
         </div>
-    </div>
+
+        <!-- Data Entry Form -->
+        <form id="dataEntryForm">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h2>Informasi Lokasi</h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-globe-asia"></i>
+                                Region
+                            </label>
+                            <select class="form-control" id="region" required onchange="updateStoreList()">
+                                <option value="">-- Pilih Region --</option>
+                                <option value="Region 1">Region 1</option>
+                                <option value="Region 2">Region 2</option>
+                                <option value="Region 3">Region 3</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-store-alt"></i>
+                                Nama Toko
+                            </label>
+                            <select class="form-control" id="storeName" required>
+                                <option value="">-- Pilih Region Terlebih Dahulu --</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-tags"></i>
+                    <h2>Informasi Produk</h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-layer-group"></i>
+                                Divisi
+                            </label>
+                            <select class="form-control" id="division" required onchange="updateCategoryList()">
+                                <option value="">-- Pilih Divisi --</option>
+                                <option value="Dry Food">Dry Food</option>
+                                <option value="Meal Solution">Meal Solution</option>
+                                <option value="Fresh Food">Fresh Food</option>
+                                <option value="H&B HOME CARE">H&B HOME CARE</option>
+                                <option value="Non Food">Non Food</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-boxes"></i>
+                                Kategori
+                            </label>
+                            <select class="form-control" id="category" required>
+                                <option value="">-- Pilih Divisi Terlebih Dahulu --</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-box"></i>
+                                Nama Produk (prod_nm)
+                            </label>
+                            <input type="text" class="form-control" id="prodNm" placeholder="Masukkan nama produk" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-cubes"></i>
+                                Stock (stk)
+                            </label>
+                            <input type="text" class="form-control" id="stk" placeholder="Masukkan jumlah stock" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-image"></i>
+                    <h2>Upload Gambar Produk</h2>
+                </div>
+                <div class="card-body">
+                    <div class="image-upload-container" id="uploadContainer" onclick="document.getElementById('imageFile').click()">
+                        <div id="uploadPlaceholder">
+                            <div class="upload-icon">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <p class="upload-text">Klik untuk upload gambar atau drag & drop</p>
+                            <p class="upload-hint">PNG, JPG, JPEG (Max 5MB)</p>
+                        </div>
+                        <div class="preview-container" id="previewContainer">
+                            <img id="imagePreview" alt="Preview">
+                            <button type="button" class="remove-image" onclick="removeImage(event)">
+                                <i class="fas fa-trash"></i> Hapus Gambar
+                            </button>
+                        </div>
+                    </div>
+                    <input type="file" id="imageFile" accept="image/*" onchange="previewImage(event)">
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit" id="submitBtn">
+                <i class="fas fa-paper-plane"></i>
+                <span>Submit Data</span>
+            </button>
+
+            <div class="status-message" id="statusMessage">
+                <i class="fas fa-check-circle"></i>
+                <span id="statusText"></span>
+            </div>
+        </form>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 LOTTE MART - Promo Display System</p>
+    </footer>
 
     <script src="config.js"></script>
     <script>
-        // DOM Elements
-        const storeTypeSelect = document.getElementById('storeType');
-        const regionSelect = document.getElementById('region');
-        const storeNameSelect = document.getElementById('storeName');
-        const divisionSelect = document.getElementById('division');
-        const categorySelect = document.getElementById('category');
-        const form = document.getElementById('dataEntryForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const loading = document.getElementById('loading');
-        const alertBox = document.getElementById('alertBox');
-        const alertMessage = document.getElementById('alertMessage');
-
-        // Category mapping based on division
-        const categoryMapping = {
-            'Dry Food': [
-                { code: '11', name: 'Biscuit/Snacks' },
-                { code: '17', name: 'Bulk Product' },
-                { code: '21', name: 'Sauces&Spices' },
-                { code: '23', name: 'Drinks' },
-                { code: '24', name: 'Milk' }
-            ],
-            'Meal Solution': [
-                { code: '80', name: 'BAKERY' },
-                { code: '82', name: 'Delica' }
-            ],
-            'Fresh Food': [
-                { code: '31', name: 'Fish' },
-                { code: '32', name: 'Meat' },
-                { code: '33', name: 'Fruits' },
-                { code: '34', name: 'Vegetables' },
-                { code: '35', name: 'Dairy & Frozen' }
-            ],
-            'H&B HOME CARE': [
-                { code: '14', name: 'Home Care' },
-                { code: '19', name: 'H&B' }
-            ],
-            'Non Food': [
-                { code: '86', name: 'IT/GADGET' },
-                { code: '87', name: 'Small Appliance' },
-                { code: '88', name: 'BIG APPLIANCE' },
-                { code: 'ELC', name: 'Electronic' },
-                { code: '51', name: 'Kitchen' },
-                { code: '57', name: 'Bathroom' },
-                { code: '85', name: 'DIY' },
-                { code: '13', name: 'Interior & Bedding' },
-                { code: '62', name: 'Textile' },
-                { code: '71', name: 'Stationary/Toys' }
-            ]
-        };
-
-        // Store Type Change Handler
-        storeTypeSelect.addEventListener('change', function() {
-            const storeType = this.value;
-            regionSelect.disabled = !storeType;
-            regionSelect.value = '';
-            storeNameSelect.innerHTML = '<option value="">-- Pilih Toko --</option>';
-            storeNameSelect.disabled = true;
-            
-            if (storeType) {
-                regionSelect.disabled = false;
-            }
+        // Display current date
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('id-ID', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
         });
 
-        // Region Change Handler
-        regionSelect.addEventListener('change', function() {
-            const storeType = storeTypeSelect.value;
-            const region = this.value;
-            
-            storeNameSelect.innerHTML = '<option value="">-- Pilih Toko --</option>';
-            storeNameSelect.disabled = true;
-            
-            if (storeType && region) {
-                const stores = STORE_DATA[storeType][region] || [];
-                stores.forEach(store => {
-                    const option = document.createElement('option');
-                    option.value = `${store.code} - ${store.name}`;
-                    option.textContent = `${store.code} - ${store.name}`;
-                    storeNameSelect.appendChild(option);
-                });
-                storeNameSelect.disabled = false;
-            }
-        });
+        // Current store type
+        let currentStoreType = 'LSI';
 
-        // Division Change Handler
-        divisionSelect.addEventListener('change', function() {
-            const division = this.value;
-            categorySelect.innerHTML = '<option value="">-- Pilih Kategori --</option>';
-            categorySelect.disabled = true;
-            
-            if (division && categoryMapping[division]) {
-                categoryMapping[division].forEach(cat => {
-                    const option = document.createElement('option');
-                    option.value = `${cat.code} - ${cat.name}`;
-                    option.textContent = `${cat.code} - ${cat.name}`;
-                    categorySelect.appendChild(option);
-                });
-                categorySelect.disabled = false;
-            }
-        });
-
-        // Show Alert Function
-        function showAlert(message, isError = false) {
-            alertBox.className = 'alert show ' + (isError ? 'alert-error' : 'alert-success');
-            alertBox.querySelector('i').className = isError ? 'fas fa-exclamation-circle' : 'fas fa-check-circle';
-            alertMessage.textContent = message;
-            setTimeout(() => {
-                alertBox.classList.remove('show');
-            }, 5000);
+        // Select store type
+        function selectStoreType(type) {
+            currentStoreType = type;
+            document.querySelectorAll('.store-type-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.type === type);
+            });
+            // Reset form selections
+            document.getElementById('region').value = '';
+            document.getElementById('storeName').innerHTML = '<option value="">-- Pilih Region Terlebih Dahulu --</option>';
+            updateStoreList();
         }
 
-        // Form Submit Handler
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const storeType = storeTypeSelect.value;
-            const scriptUrl = storeType === 'LSI' ? CONFIG.LSI_SCRIPT_URL : CONFIG.LMI_SCRIPT_URL;
-            
-            if (!scriptUrl) {
-                showAlert('URL Google Apps Script belum dikonfigurasi untuk tipe toko ini!', true);
-                return;
-            }
+        // Update store list based on region and store type
+        function updateStoreList() {
+            const region = document.getElementById('region').value;
+            const storeSelect = document.getElementById('storeName');
+            storeSelect.innerHTML = '<option value="">-- Pilih Toko --</option>';
 
+            if (!region) return;
+
+            const stores = CONFIG.stores[currentStoreType][region];
+            if (stores) {
+                stores.forEach(store => {
+                    const option = document.createElement('option');
+                    option.value = store;
+                    option.textContent = store;
+                    storeSelect.appendChild(option);
+                });
+            }
+        }
+
+        // Update category list based on division
+        function updateCategoryList() {
+            const division = document.getElementById('division').value;
+            const categorySelect = document.getElementById('category');
+            categorySelect.innerHTML = '<option value="">-- Pilih Kategori --</option>';
+
+            if (!division) return;
+
+            const categories = CONFIG.categories[division];
+            if (categories) {
+                categories.forEach(cat => {
+                    const option = document.createElement('option');
+                    option.value = cat;
+                    option.textContent = cat;
+                    categorySelect.appendChild(option);
+                });
+            }
+        }
+
+        // Image preview
+        function previewImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                if (file.size > 5 * 1024 * 1024) {
+                    showStatus('Ukuran file terlalu besar. Maksimal 5MB.', 'error');
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('imagePreview').src = e.target.result;
+                    document.getElementById('imagePreview').classList.add('show');
+                    document.getElementById('uploadPlaceholder').style.display = 'none';
+                    document.getElementById('previewContainer').classList.add('show');
+                    document.getElementById('uploadContainer').classList.add('has-image');
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Remove image
+        function removeImage(event) {
+            event.stopPropagation();
+            document.getElementById('imageFile').value = '';
+            document.getElementById('imagePreview').src = '';
+            document.getElementById('imagePreview').classList.remove('show');
+            document.getElementById('uploadPlaceholder').style.display = 'block';
+            document.getElementById('previewContainer').classList.remove('show');
+            document.getElementById('uploadContainer').classList.remove('has-image');
+        }
+
+        // Show status message
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('statusMessage');
+            const statusText = document.getElementById('statusText');
+            const icon = statusDiv.querySelector('i');
+
+            statusDiv.className = 'status-message show ' + type;
+            statusText.textContent = message;
+
+            if (type === 'success') {
+                icon.className = 'fas fa-check-circle';
+            } else if (type === 'error') {
+                icon.className = 'fas fa-exclamation-circle';
+            } else if (type === 'loading') {
+                icon.className = 'spinner';
+            }
+        }
+
+        // Form submission
+        document.getElementById('dataEntryForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            showStatus('Mengirim data...', 'loading');
+
+            // Get form data
             const formData = {
-                storeType: storeType,
-                region: regionSelect.value,
-                storeName: storeNameSelect.value,
-                division: divisionSelect.value,
-                category: categorySelect.value,
-                prodName: document.getElementById('prodName').value.trim(),
-                stock: document.getElementById('stock').value.trim(),
-                imageUrl: document.getElementById('imageUrl').value.trim()
+                storeType: currentStoreType,
+                region: document.getElementById('region').value,
+                storeName: document.getElementById('storeName').value,
+                division: document.getElementById('division').value,
+                category: document.getElementById('category').value,
+                prodNm: document.getElementById('prodNm').value,
+                stk: document.getElementById('stk').value
             };
 
-            // Show loading
-            submitBtn.disabled = true;
-            form.style.display = 'none';
-            loading.classList.add('active');
+            // Get image as base64
+            const imageFile = document.getElementById('imageFile').files[0];
+            if (imageFile) {
+                const base64 = await fileToBase64(imageFile);
+                formData.imageBase64 = base64;
+                formData.imageName = imageFile.name;
+            }
+
+            // Send to Google Apps Script
+            const scriptUrl = CONFIG.scriptUrl;
 
             try {
                 const response = await fetch(scriptUrl, {
                     method: 'POST',
                     mode: 'no-cors',
                     headers: {
-                        'Content-Type': 'application/json',
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(formData)
                 });
 
-                showAlert('Data berhasil dikirim ke Google Slides!');
-                form.reset();
-                regionSelect.disabled = true;
-                storeNameSelect.disabled = true;
-                categorySelect.disabled = true;
+                // Since we're using no-cors, we can't read the response
+                // We'll assume success and show a message
+                showStatus('Data berhasil dikirim! Slide akan diperbarui.', 'success');
                 
+                // Reset form (keep store type and region)
+                document.getElementById('prodNm').value = '';
+                document.getElementById('stk').value = '';
+                removeImage(new Event('click'));
+
             } catch (error) {
                 console.error('Error:', error);
-                showAlert('Terjadi kesalahan. Silakan coba lagi.', true);
-            } finally {
-                submitBtn.disabled = false;
-                form.style.display = 'block';
-                loading.classList.remove('active');
+                showStatus('Terjadi kesalahan. Silakan coba lagi.', 'error');
+            }
+
+            submitBtn.disabled = false;
+        });
+
+        // Convert file to base64
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+        }
+
+        // Drag and drop support
+        const uploadContainer = document.getElementById('uploadContainer');
+
+        uploadContainer.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadContainer.style.borderColor = 'var(--primary)';
+            uploadContainer.style.background = 'rgba(227, 25, 55, 0.05)';
+        });
+
+        uploadContainer.addEventListener('dragleave', () => {
+            uploadContainer.style.borderColor = 'var(--border)';
+            uploadContainer.style.background = 'var(--bg-light)';
+        });
+
+        uploadContainer.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadContainer.style.borderColor = 'var(--border)';
+            uploadContainer.style.background = 'var(--bg-light)';
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                document.getElementById('imageFile').files = files;
+                previewImage({ target: { files: files } });
             }
         });
     </script>
