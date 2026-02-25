@@ -1,121 +1,194 @@
-// ==========================================
-// KONFIGURASI DATA ENTRY PROMO LOTTE MART
-// ==========================================
+/**
+ * KONFIGURASI DATA ENTRY GOOGLE SLIDES
+ * 
+ * File ini berisi konfigurasi untuk:
+ * 1. URL Google Apps Script untuk masing-masing tipe toko
+ * 2. Data toko LSI dan LMI per region
+ */
 
 const CONFIG = {
-    // URL Google Apps Script Web App (Ganti dengan URL deployment Anda)
-    scriptUrl: 'https://script.google.com/macros/s/AKfycbyQdo5wBKGSWUf5TeHq2uGsxdO4paKPo8SM1tbuZ-_Mm73fl0vzjkTwjfzxbYF7KzQU/exec',
+    // ============================================
+    // GOOGLE APPS SCRIPT URLs
+    // ============================================
+    // Ganti dengan URL deployment Google Apps Script Anda
+    // LSI - Google Slides untuk toko LSI
+    LSI_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbzX-S0atbSFu8Si_d48W5fQpKfB539z8fBH30nPfWc5fEC6u-2h4nb_TEFY_4FjmdZ6/exec',
+    
+    // LMI - Google Slides untuk toko LMI
+    LMI_SCRIPT_URL: 'https://script.google.com/macros/s/YOUR_LMI_SCRIPT_ID/exec',
+    
+    // ============================================
+    // KONFIGURASI SLIDE
+    // ============================================
+    // Maksimum produk per slide
+    MAX_PRODUCTS_PER_SLIDE: 9,
+    
+    // Slide awal untuk data (slide 1 adalah cover)
+    START_SLIDE_INDEX: 2
+};
 
-    // ==========================================
-    // DATA TOKO
-    // ==========================================
-    stores: {
-        // LSI Stores
-        LSI: {
-            'Region 1': [
-                '6001 - Pasar Rebo',
-                '6003 - Kelapa Gading',
-                '6007 - Alam Sutera',
-                '6010 - Medan',
-                '6014 - Palembang',
-                '6015 - Pekanbaru',
-                '6021 - Jatake',
-                '6029 - Batam',
-                '6031 - Lampung',
-                '6006 - Ciputat',
-                '6022 - Serang',
-                '6039 - Serpong'
-            ],
-            'Region 2': [
-                '6004 - Meruya',
-                '6005 - Bandung',
-                '6008 - Cibitung',
-                '6023 - Cikarang',
-                '6024 - Cirebon',
-                '6027 - Tasikmalaya',
-                '6034 - Karawang',
-                '6036 - Padalarang',
-                '6038 - Tegal',
-                '6018 - Bekasi',
-                '6026 - Bogor',
-                '6030 - Pakansari',
-                '6002 - Sidoarjo'
-            ],
-            'Region 3': [
-                '6009 - Denpasar',
-                '6013 - Makasar',
-                '6017 - Banjarmasin',
-                '6020 - Balikpapan',
-                '6028 - Mastrip',
-                '6032 - Samarinda',
-                '6033 - Manado',
-                '6037 - Mataram',
-                '6011 - Semarang',
-                '6016 - Yogyakarta',
-                '6019 - Solo'
-            ]
-        },
-        // LMI Stores
-        LMI: {
-            'Region 1': [
-                '04003 - FESTIVAL CITY LINK',
-                '04004 - KELAPA GADING',
-                '04005 - KUNINGAN CITY',
-                '04009 - TAMAN SURYA',
-                '04010 - MEDAN CENTRE POINT',
-                '04021 - GREEN PRAMUKA'
-            ],
-            'Region 2': [
-                '04001 - GANDARIA',
-                '04006 - BINTARO',
-                '04007 - PANAKUKANG',
-                '04008 - FATMAWATI',
-                '04013 - SOLO BARU',
-                '04020 - PAKUWON MALL SBY'
-            ],
-            'Region 3': [
-                '04022 - BALI BEER'
-            ]
-        }
+/**
+ * DATA TOKO
+ * Struktur: STORE_DATA[tipe_toko][region] = array of {code, name}
+ */
+const STORE_DATA = {
+    // ============================================
+    // LSI - LOTTE SUPERMARKET
+    // ============================================
+    LSI: {
+        // Region 1
+        1: [
+            { code: '6001', name: 'Pasar Rebo' },
+            { code: '6003', name: 'Kelapa Gading' },
+            { code: '6007', name: 'Alam Sutera' },
+            { code: '6010', name: 'Medan' },
+            { code: '6014', name: 'Palembang' },
+            { code: '6015', name: 'Pekanbaru' },
+            { code: '6021', name: 'Jatake' },
+            { code: '6029', name: 'Batam' },
+            { code: '6031', name: 'Lampung' },
+            { code: '6006', name: 'Ciputat' },
+            { code: '6022', name: 'Serang' },
+            { code: '6039', name: 'Serpong' }
+        ],
+        // Region 2
+        2: [
+            { code: '6004', name: 'Meruya' },
+            { code: '6005', name: 'Bandung' },
+            { code: '6008', name: 'Cibitung' },
+            { code: '6023', name: 'Cikarang' },
+            { code: '6024', name: 'Cirebon' },
+            { code: '6027', name: 'Tasikmalaya' },
+            { code: '6034', name: 'Karawang' },
+            { code: '6036', name: 'Padalarang' },
+            { code: '6038', name: 'Tegal' },
+            { code: '6018', name: 'Bekasi' },
+            { code: '6026', name: 'Bogor' },
+            { code: '6030', name: 'Pakansari' },
+            { code: '6002', name: 'Sidoarjo' }
+        ],
+        // Region 3
+        3: [
+            { code: '6009', name: 'Denpasar' },
+            { code: '6013', name: 'Makasar' },
+            { code: '6017', name: 'Banjarmasin' },
+            { code: '6020', name: 'Balikpapan' },
+            { code: '6028', name: 'Mastrip' },
+            { code: '6032', name: 'Samarinda' },
+            { code: '6033', name: 'Manado' },
+            { code: '6037', name: 'Mataram' },
+            { code: '6011', name: 'Semarang' },
+            { code: '6016', name: 'Yogyakarta' },
+            { code: '6019', name: 'Solo' }
+        ]
     },
-
-    // ==========================================
-    // DATA KATEGORI PER DIVISI
-    // ==========================================
-    categories: {
-        'Dry Food': [
-            '11 - Biscuit/Snacks',
-            '17 - Bulk Product',
-            '21 - Sauces&Spices',
-            '23 - Drinks',
-            '24 - Milk'
+    
+    // ============================================
+    // LMI - LOTTE MART
+    // ============================================
+    LMI: {
+        // Region 1
+        1: [
+            { code: '04003', name: 'FESTIVAL CITY LINK' },
+            { code: '04004', name: 'KELAPA GADING' },
+            { code: '04005', name: 'KUNINGAN CITY' },
+            { code: '04009', name: 'TAMAN SURYA' },
+            { code: '04010', name: 'MEDAN CENTRE POINT' },
+            { code: '04021', name: 'GREEN PRAMUKA' }
         ],
-        'Meal Solution': [
-            '80 - BAKERY',
-            '82 - Delica'
+        // Region 2
+        2: [
+            { code: '04001', name: 'GANDARIA' },
+            { code: '04006', name: 'BINTARO' },
+            { code: '04007', name: 'PANAKUKANG' },
+            { code: '04008', name: 'FATMAWATI' },
+            { code: '04013', name: 'SOLO BARU' },
+            { code: '04020', name: 'PAKUWON MALL SBY' }
         ],
-        'Fresh Food': [
-            '31 - Fish',
-            '32 - Meat',
-            '33 - Fruits',
-            '34 - Vegetables',
-            '35 - Dairy & Frozen'
-        ],
-        'H&B HOME CARE': [
-            '14 - Home Care',
-            '19 - H&B'
-        ],
-        'Non Food': [
-            '86 - IT/GADGET',
-            '87 - Small Appliance',
-            '88 - BIG APPLIANCE',
-            'ELC - Electronic',
-            '51 - Kitchen',
-            '57 - Bathroom',
-            '85 - DIY',
-            '13 - Interior & Bedding',
-            '62 - Textile',
-            '71 - Stationary/Toys'
+        // Region 3
+        3: [
+            { code: '04022', name: 'BALI BEER' }
         ]
     }
 };
+
+/**
+ * Mapping Divisi ke Kategori
+ * Digunakan untuk validasi dan dropdown dinamis
+ */
+const DIVISION_CATEGORIES = {
+    'Dry Food': [
+        { code: '11', name: 'Biscuit/Snacks' },
+        { code: '17', name: 'Bulk Product' },
+        { code: '21', name: 'Sauces&Spices' },
+        { code: '23', name: 'Drinks' },
+        { code: '24', name: 'Milk' }
+    ],
+    'Meal Solution': [
+        { code: '80', name: 'BAKERY' },
+        { code: '82', name: 'Delica' }
+    ],
+    'Fresh Food': [
+        { code: '31', name: 'Fish' },
+        { code: '32', name: 'Meat' },
+        { code: '33', name: 'Fruits' },
+        { code: '34', name: 'Vegetables' },
+        { code: '35', name: 'Dairy & Frozen' }
+    ],
+    'H&B HOME CARE': [
+        { code: '14', name: 'Home Care' },
+        { code: '19', name: 'H&B' }
+    ],
+    'Non Food': [
+        { code: '86', name: 'IT/GADGET' },
+        { code: '87', name: 'Small Appliance' },
+        { code: '88', name: 'BIG APPLIANCE' },
+        { code: 'ELC', name: 'Electronic' },
+        { code: '51', name: 'Kitchen' },
+        { code: '57', name: 'Bathroom' },
+        { code: '85', name: 'DIY' },
+        { code: '13', name: 'Interior & Bedding' },
+        { code: '62', name: 'Textile' },
+        { code: '71', name: 'Stationary/Toys' }
+    ]
+};
+
+/**
+ * Helper function untuk mendapatkan URL Google Apps Script
+ * berdasarkan tipe toko
+ */
+function getScriptUrl(storeType) {
+    if (storeType === 'LSI') {
+        return CONFIG.LSI_SCRIPT_URL;
+    } else if (storeType === 'LMI') {
+        return CONFIG.LMI_SCRIPT_URL;
+    }
+    return null;
+}
+
+/**
+ * Helper function untuk mendapatkan daftar toko
+ * berdasarkan tipe toko dan region
+ */
+function getStores(storeType, region) {
+    if (STORE_DATA[storeType] && STORE_DATA[storeType][region]) {
+        return STORE_DATA[storeType][region];
+    }
+    return [];
+}
+
+/**
+ * Helper function untuk mendapatkan daftar kategori
+ * berdasarkan divisi
+ */
+function getCategories(division) {
+    if (DIVISION_CATEGORIES[division]) {
+        return DIVISION_CATEGORIES[division];
+    }
+    return [];
+}
+
+// Export untuk module (jika diperlukan)
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { CONFIG, STORE_DATA, DIVISION_CATEGORIES, getScriptUrl, getStores, getCategories };
+}
