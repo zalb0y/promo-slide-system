@@ -4,7 +4,7 @@
 
 const CONFIG = {
   // Google Apps Script Web App URL (GANTI DENGAN URL ANDA)
-  APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbzFSqxWKDYc1YvybAAaUcV7ABhpcPPmMlYSQPivFmDwckxD4XjPNC0DCf6BoW_y2BVqbQ/exec",
+  APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbyDXHqyRapAONOAQSpaYL-csUAykRqsMRN4xWTH_F3-3vR38YmszqJf74DHfSXZZTYAhA/exec",
 
   // Google Slides Presentation IDs (GANTI DENGAN ID ANDA)
   SLIDES_ID_LSI: "1ucAEGVYqM-37QSSjBP_Jta7Ohq-tgPpgyphKYk5YEng",
@@ -131,6 +131,7 @@ const REGION_ORDER = {
   "Region 2": 2,
   "Region 3": 3,
 };
+
 
 
 
